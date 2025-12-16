@@ -69,7 +69,10 @@ class AuthService:
     
     def _exchange_code_for_token(self, provider: str, auth_code: str) -> str:
         """Exchange authorization code for access token."""
-        # Simplified implementation for demo
+        # TODO: Implement actual OAuth2 token exchange
+        # For now, simplified implementation for demo
+        if not auth_code:
+            raise AuthenticationError("Authorization code is required")
         return f"token_{provider}_{auth_code}"
     
     def _get_user_info(self, provider: str, access_token: str) -> Dict:
@@ -130,4 +133,22 @@ class AuthService:
             del self.sessions[session_token]
             return True
         return False
+    
+    def refresh_session(self, session_token: str) -> Optional[str]:
+        """
+        Refresh an existing session, extending its expiration.
+        
+        Args:
+            session_token: Current session token
+            
+        Returns:
+            New session token if refresh successful, None otherwise
+        """
+        user = self.validate_session(session_token)
+        if user:
+            # Invalidate old session
+            self.logout(session_token)
+            # Create new session
+            return self._create_session(user)
+        return None
 
