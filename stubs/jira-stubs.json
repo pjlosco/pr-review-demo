@@ -1,0 +1,78 @@
+{
+  "tickets": {
+    "DEMO-101": {
+      "id": "10101",
+      "key": "DEMO-101",
+      "summary": "Implement user authentication module",
+      "description": "Add OAuth2 authentication flow for user login. Support Google and GitHub providers. This is a demo ticket for testing the PR review agent.",
+      "status": "In Progress",
+      "assignee": {
+        "displayName": "Demo Developer",
+        "emailAddress": "demo@example.com"
+      },
+      "acceptanceCriteria": [
+        "User can log in with Google OAuth2",
+        "User can log in with GitHub OAuth2",
+        "Session is maintained for 24 hours",
+        "Logout functionality works correctly",
+        "Error handling for failed authentication",
+        "All authentication endpoints return proper HTTP status codes",
+        "Tokens are securely stored and encrypted"
+      ],
+      "labels": ["authentication", "security", "backend", "oauth2", "demo"],
+      "issueType": "Story",
+      "priority": "High",
+      "created": "2024-01-15T10:00:00.000Z",
+      "updated": "2024-01-20T14:30:00.000Z"
+    },
+    "DEMO-102": {
+      "id": "10102",
+      "key": "DEMO-102",
+      "summary": "Add user profile management",
+      "description": "Implement user profile CRUD operations with proper validation and error handling.",
+      "status": "To Do",
+      "assignee": null,
+      "acceptanceCriteria": [
+        "User can view their profile",
+        "User can update their profile information",
+        "Profile updates are validated before saving",
+        "Error messages are clear and user-friendly",
+        "Profile data is sanitized to prevent XSS attacks"
+      ],
+      "labels": ["user-management", "backend", "demo"],
+      "issueType": "Story",
+      "priority": "Medium",
+      "created": "2024-01-16T09:00:00.000Z",
+      "updated": "2024-01-16T09:00:00.000Z"
+    },
+    "DEMO-103": {
+      "id": "10103",
+      "key": "DEMO-103",
+      "summary": "Implement API rate limiting",
+      "description": "Add rate limiting to all API endpoints to prevent abuse and ensure fair usage.",
+      "status": "In Progress",
+      "assignee": {
+        "displayName": "Demo Developer",
+        "emailAddress": "demo@example.com"
+      },
+      "acceptanceCriteria": [
+        "Rate limits are enforced per user/IP",
+        "Rate limit headers are included in responses",
+        "Rate limit exceeded returns 429 status code",
+        "Rate limits are configurable per endpoint",
+        "Rate limit information is logged for monitoring"
+      ],
+      "labels": ["api", "security", "backend", "demo"],
+      "issueType": "Task",
+      "priority": "High",
+      "created": "2024-01-17T11:00:00.000Z",
+      "updated": "2024-01-18T16:00:00.000Z"
+    }
+  },
+  "relatedTickets": {
+    "DEMO-101": ["DEMO-102", "DEMO-103"],
+    "DEMO-102": ["DEMO-101"],
+    "DEMO-103": ["DEMO-101"]
+  }
+}
+

@@ -1,0 +1,39 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install PR Review Agent
+        run: pip install git+https://github.com/pjlosco/pr-reviewer.git
+      
+      - name: Run AI Code Review
+        run: pr-review-agent --pr-url "${{ github.event.pull_request.html_url }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # LLM Configuration
+          LLM_PROVIDER: "openai"
+          LLM_MODEL: "gpt-3.5-turbo"
+          LLM_TEMPERATURE: "0.7"
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # Optional: LangSmith Observability
+          LANGCHAIN_TRACING_V2: "true"
+          LANGCHAIN_API_KEY: ${{ secrets.LANGCHAIN_API_KEY }}
+          LANGCHAIN_PROJECT: "pr-review-demo"
+          # Stub Data Configuration
+          JIRA_STUB_DATA_PATH: ./stubs/jira-stubs.json
+          CONFLUENCE_STUB_DATA_PATH: ./stubs/confluence-stubs.json
+
