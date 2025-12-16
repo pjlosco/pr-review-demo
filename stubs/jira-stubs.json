@@ -13,11 +13,14 @@
       "acceptanceCriteria": [
         "User can log in with Google OAuth2",
         "User can log in with GitHub OAuth2",
-        "Session is maintained for 24 hours",
+        "Session is maintained for exactly 24 hours",
         "Logout functionality works correctly",
-        "Error handling for failed authentication",
-        "All authentication endpoints return proper HTTP status codes",
-        "Tokens are securely stored and encrypted"
+        "ALL authentication endpoints MUST return proper HTTP status codes (401 for auth errors, 404 for not found, 500 for server errors)",
+        "Tokens MUST be securely stored and encrypted - plain text storage is a CRITICAL security vulnerability",
+        "Error handling MUST be comprehensive - all exceptions must be caught and handled appropriately",
+        "API responses MUST include proper HTTP status codes in the response headers, not just in the response body",
+        "Input validation MUST be performed on all user inputs to prevent injection attacks",
+        "Rate limiting MUST be implemented to prevent brute force attacks"
       ],
       "labels": ["authentication", "security", "backend", "oauth2", "demo"],
       "issueType": "Story",
