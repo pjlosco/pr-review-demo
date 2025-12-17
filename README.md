@@ -91,6 +91,12 @@ You can customize these files to match your project's requirements. See the [PR 
 - **Description**: `Related to DEMO-102`
 - **Changes**: Add new `src/profile.py` file
 
+### Example 3: Auth Hardening (intentionally flawed to showcase the review agent)
+- **Branch**: `feature/auth-hardening-demo`
+- **PR Title**: `DEMO-104: Harden authentication flows`
+- **Description**: `Fixes DEMO-104. Contains intentionally bad patterns for the agent to catch.`
+- **Changes**: Edit `src/auth.py` and add `src/auth_api.py` with known issues (hardcoded secrets, plaintext tokens, missing HTTP status codes, SQL injection). The agent should flag CRITICAL issues and request changes.
+
 ## How It Works
 
 1. **PR Created/Updated**: GitHub Actions workflow triggers on PR events

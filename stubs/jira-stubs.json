@@ -67,12 +67,39 @@
       "priority": "High",
       "created": "2024-01-17T11:00:00.000Z",
       "updated": "2024-01-18T16:00:00.000Z"
+    },
+    "DEMO-104": {
+      "id": "10104",
+      "key": "DEMO-104",
+      "summary": "Harden authentication flows and error handling",
+      "description": "Refactor auth service to meet security guidelines and API standards.",
+      "status": "In Progress",
+      "assignee": {
+        "displayName": "Demo Developer",
+        "emailAddress": "demo@example.com"
+      },
+      "acceptanceCriteria": [
+        "Secrets (client secrets, signing keys) are not hardcoded and are loaded from environment or secrets manager",
+        "Tokens are never stored in plaintext; use hashed or encrypted storage",
+        "Return correct HTTP status codes for auth errors (401), missing sessions (404), rate limit (429), and server errors (500)",
+        "Implement rate limiting per IP/user for login endpoints; include X-RateLimit-* headers",
+        "Remove SQL injection risks; all queries must be parameterized",
+        "No sensitive information (tokens, secrets, stack traces) is logged or returned to clients",
+        "Input validation is enforced on all request parameters (length, format, allowed values)",
+        "Add structured error responses following API Design Guidelines"
+      ],
+      "labels": ["authentication", "security", "api", "hardening"],
+      "issueType": "Story",
+      "priority": "Critical",
+      "created": "2024-01-22T09:00:00.000Z",
+      "updated": "2024-01-22T09:00:00.000Z"
     }
   },
   "relatedTickets": {
     "DEMO-101": ["DEMO-102", "DEMO-103"],
     "DEMO-102": ["DEMO-101"],
-    "DEMO-103": ["DEMO-101"]
+    "DEMO-103": ["DEMO-101"],
+    "DEMO-104": ["DEMO-101", "DEMO-103"]
   }
 }
 
