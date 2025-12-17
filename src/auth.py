@@ -6,6 +6,7 @@ Sessions are maintained for 24 hours as per requirements.
 """
 
 import time
+import secrets
 from typing import Optional, Dict
 from datetime import datetime, timedelta
 
@@ -31,6 +32,7 @@ class AuthService:
     def __init__(self):
         self.sessions: Dict[str, Dict] = {}
         self.session_duration = timedelta(hours=24)
+        self.inactivity_timeout = timedelta(minutes=30)
     
     def login(self, provider: str, auth_code: str) -> str:
         """
@@ -86,13 +88,15 @@ class AuthService:
     
     def _create_session(self, user: User) -> str:
         """Create a new session for the user."""
-        session_token = f"session_{int(time.time())}"
-        expires_at = datetime.now() + self.session_duration
+        session_token = secrets.token_urlsafe(32)
+        now = datetime.now()
+        expires_at = now + self.session_duration
         
         self.sessions[session_token] = {
             'user': user,
             'expires_at': expires_at,
-            'created_at': datetime.now()
+            'created_at': now,
+            'last_activity': now
         }
         
         return session_token
@@ -116,6 +120,16 @@ class AuthService:
             # Session expired
             del self.sessions[session_token]
             return None
+        
+        # Enforce inactivity timeout
+        last_activity = session.get('last_activity', session.get('created_at', datetime.now()))
+        now = datetime.now()
+        if now - last_activity > self.inactivity_timeout:
+            del self.sessions[session_token]
+            return None
+        
+        # Update activity timestamp
+        session['last_activity'] = now
         
         return session['user']
     
