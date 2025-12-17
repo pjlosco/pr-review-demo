@@ -2,57 +2,21 @@
   "pages": {
     "123456": {
       "id": "123456",
-      "title": "Authentication Architecture",
+      "title": "Hello World Demo Notes",
       "space": {
         "key": "ENG",
         "name": "Engineering"
       },
       "body": {
         "storage": {
-          "value": "<h1>Authentication Architecture</h1><p>Our authentication system uses OAuth2 with the following components:</p><h2>Flow</h2><ol><li>User initiates login</li><li>Redirect to OAuth provider (Google or GitHub)</li><li>Callback with authorization code</li><li>Exchange code for access token</li><li>Store session in Redis with 24-hour expiration</li><li>Return JWT token to client</li></ol><h2>Security Considerations</h2><ul><li>All tokens are encrypted using AES-256</li><li>Session timeout: 24 hours</li><li>Refresh tokens rotate every 7 days</li><li>All authentication endpoints must use HTTPS</li><li>Implement CSRF protection for state parameter</li></ul><h2>Error Handling</h2><p>Authentication errors should return appropriate HTTP status codes:</p><ul><li>401 Unauthorized - Invalid credentials</li><li>403 Forbidden - Account disabled or locked</li><li>429 Too Many Requests - Rate limit exceeded</li><li>500 Internal Server Error - System errors</li></ul>"
-        }
-      },
-      "version": {
-        "number": 3
-      },
-      "created": "2024-01-10T09:00:00.000Z",
-      "updated": "2024-01-18T15:20:00.000Z"
-    },
-    "789012": {
-      "id": "789012",
-      "title": "API Design Guidelines",
-      "space": {
-        "key": "ENG",
-        "name": "Engineering"
-      },
-      "body": {
-        "storage": {
-          "value": "<h1>API Design Guidelines</h1><h2>REST API Standards</h2><ul><li>Use HTTP status codes correctly (200, 201, 400, 401, 404, 429, 500)</li><li>Version APIs in URL path: /api/v1/...</li><li>Return consistent error formats with error codes and messages</li><li>Document with OpenAPI 3.0</li><li>Use pagination for list endpoints (limit, offset, or cursor-based)</li><li>Include rate limit headers in all responses</li></ul><h2>Authentication</h2><p>All API endpoints require Bearer token authentication in the Authorization header. Tokens expire after 24 hours and must be refreshed.</p><h2>Error Response Format</h2><pre><code>{<br/>  \"error\": {<br/>    \"code\": \"ERROR_CODE\",<br/>    \"message\": \"Human-readable error message\",<br/>    \"details\": {}\n  }<br/>}</code></pre><h2>Rate Limiting</h2><p>All endpoints have rate limits. Check X-RateLimit-* headers for current limits and remaining requests.</p>"
-        }
-      },
-      "version": {
-        "number": 2
-      },
-      "created": "2024-01-05T10:00:00.000Z",
-      "updated": "2024-01-12T11:30:00.000Z"
-    },
-    "345678": {
-      "id": "345678",
-      "title": "Code Review Standards",
-      "space": {
-        "key": "ENG",
-        "name": "Engineering"
-      },
-      "body": {
-        "storage": {
-          "value": "<h1>Code Review Standards</h1><h2>What to Look For</h2><ul><li><strong>Logic and Design</strong>: Does the code solve the problem correctly? Is the design sound?</li><li><strong>Maintainability</strong>: Is the code readable and well-structured?</li><li><strong>Error Handling</strong>: Are errors handled gracefully with appropriate messages?</li><li><strong>Security</strong>: Are there any security vulnerabilities (SQL injection, XSS, etc.)?</li><li><strong>Performance</strong>: Are there obvious performance issues?</li></ul><h2>What NOT to Review</h2><p>CI/CD already catches these, so focus on human concerns:</p><ul><li>Syntax errors (caught by linters)</li><li>Type errors (caught by type checkers)</li><li>Test failures (caught by test suite)</li><li>Formatting (caught by formatters)</li></ul><h2>Review Checklist</h2><ol><li>Code follows project architecture patterns</li><li>Error handling is comprehensive</li><li>Security best practices are followed</li><li>Code is readable and maintainable</li><li>Acceptance criteria from Jira are met</li><li>Domain context from Confluence is considered</li></ol>"
+          "value": "<h1>Hello World Demo</h1><p>The demo app returns two lines:</p><ol><li>Hello, world!</li><li>Thanks for trying the PR Review demo.</li></ol><p>Keep the implementation minimal for quick review approvals.</p>"
         }
       },
       "version": {
         "number": 1
       },
-      "created": "2024-01-08T14:00:00.000Z",
-      "updated": "2024-01-08T14:00:00.000Z"
+      "created": "2024-01-10T09:00:00.000Z",
+      "updated": "2024-01-18T15:20:00.000Z"
     }
   },
   "spaces": {
@@ -60,11 +24,6 @@
       "key": "ENG",
       "name": "Engineering",
       "description": "Engineering documentation and guidelines"
-    },
-    "PROD": {
-      "key": "PROD",
-      "name": "Product",
-      "description": "Product requirements and specifications"
     }
   }
 }
