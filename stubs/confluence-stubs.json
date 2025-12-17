@@ -53,6 +53,24 @@
       },
       "created": "2024-01-08T14:00:00.000Z",
       "updated": "2024-01-08T14:00:00.000Z"
+    },
+    "555555": {
+      "id": "555555",
+      "title": "Auth Hardening Plan",
+      "space": {
+        "key": "ENG",
+        "name": "Engineering"
+      },
+      "body": {
+        "storage": {
+          "value": "<h1>Auth Hardening Plan</h1><h2>Ideal Current Setup</h2><ul><li>Secrets managed via env/secrets manager, never hardcoded.</li><li>Access/refresh tokens encrypted at rest; JWT signing keys rotated.</li><li>All auth endpoints return correct HTTP status codes and structured errors.</li><li>Rate limiting on login endpoints with X-RateLimit-* headers.</li><li>All SQL queries parameterized; no debug endpoints exposing PII.</li><li>Input validation on provider, code length, and formats.</li><li>No sensitive data in logs (tokens, secrets, stack traces).</li></ul><h2>Future Design (desired change)</h2><ul><li>Move sessions to signed JWTs with short TTL and refresh tokens.</li><li>Store session metadata in Redis with explicit TTL and eviction.</li><li>Add circuit breakers and retries for upstream OAuth providers.</li><li>Adopt shared error schema and error code taxonomy across services.</li><li>Centralized audit logging with PII redaction.</li></ul><h2>API Guidelines</h2><ul><li>Use status codes: 401 auth errors, 404 missing session, 429 rate limit, 500 server errors.</li><li>Return JSON errors: {\"error\": {\"code\": \"AUTH_INVALID_CODE\", \"message\": \"...\", \"details\": {...}}}</li></ul>"
+        }
+      },
+      "version": {
+        "number": 1
+      },
+      "created": "2024-01-22T10:00:00.000Z",
+      "updated": "2024-01-22T10:00:00.000Z"
     }
   },
   "spaces": {
