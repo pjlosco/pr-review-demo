@@ -1,14 +1,14 @@
 # PR Review Demo Project
 
-This is a demo project to test the [PR Review Agent](https://github.com/pjlosco/pr-reviewer). The agent automatically reviews pull requests using AI, incorporating context from Jira tickets and Confluence documentation.
+This is a minimal demo project for the [PR Review Agent](https://github.com/pjlosco/pr-reviewer). The app is intentionally simple: a hello-world endpoint that returns two lines of text so reviewers can approve the PR quickly.
 
 ## Overview
 
 This project demonstrates how to integrate the PR Review Agent into a GitHub repository. When you create or update a pull request, the agent will:
 
 1. Analyze the code changes
-2. Fetch acceptance criteria from Jira (via stub data)
-3. Retrieve domain context from Confluence (via stub data)
+2. (Stubbed) Fetch acceptance criteria
+3. (Stubbed) Retrieve domain context
 4. Generate AI-powered review comments on the PR
 
 ## Setup Instructions
@@ -79,17 +79,11 @@ You can customize these files to match your project's requirements. See the [PR 
 
 ## Example PRs to Test
 
-### Example 1: Authentication Feature
-- **Branch**: `feature/oauth-authentication`
-- **PR Title**: `DEMO-101: Implement OAuth2 authentication`
-- **Description**: `Fixes DEMO-101. Adds Google and GitHub OAuth2 support.`
-- **Changes**: Modify `src/auth.py` to add new features
-
-### Example 2: User Profile
-- **Branch**: `feature/user-profile`
-- **PR Title**: `DEMO-102: Add user profile management`
-- **Description**: `Related to DEMO-102`
-- **Changes**: Add new `src/profile.py` file
+### Example: Hello World
+- **Branch**: `feature/hello-world-demo`
+- **PR Title**: `DEMO-101: Hello world demo`
+- **Description**: `Updates stubs and code to a simple two-line greeting.`
+- **Changes**: `src/auth.py`, `src/api.py`, `stubs/*.json`
 
 ## How It Works
 
